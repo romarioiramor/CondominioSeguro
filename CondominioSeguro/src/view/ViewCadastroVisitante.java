@@ -5,17 +5,23 @@
  */
 package view;
 
+
 /**
  *
  * @author Romario
  */
 public class ViewCadastroVisitante extends javax.swing.JFrame {
 
+    String salvarAlterar;
+    
     /**
      * Creates new form ViewPrincipal
      */
     public ViewCadastroVisitante() {
         initComponents();
+        this.desabilitaHabilitaCampos(false);
+        this.limparCampos();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,7 +46,7 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jtfDocumento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JtbTabela = new javax.swing.JTable();
+        jtVisitante = new javax.swing.JTable();
         jbNovo = new javax.swing.JButton();
         jbAlterar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
@@ -51,6 +57,7 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jtfDescVeiculo = new javax.swing.JTextField();
         jcbTipoDocumento = new componentes.UJComboBox();
+        uJPanelImagem2 = new componentes.UJPanelImagem();
         uJPanelImagem1 = new componentes.UJPanelImagem();
 
         jLabel1.setText("jLabel1");
@@ -60,13 +67,37 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
 
         jLabel2.setText("Codigo:");
 
+        jtfCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfCodigoActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Nome:");
+
+        jtfNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNomeActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Telefone:");
 
+        jtfTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfTelefoneActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Documento");
 
-        JtbTabela.setModel(new javax.swing.table.DefaultTableModel(
+        jtfDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfDocumentoActionPerformed(evt);
+            }
+        });
+
+        jtVisitante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -89,29 +120,57 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(JtbTabela);
-        if (JtbTabela.getColumnModel().getColumnCount() > 0) {
-            JtbTabela.getColumnModel().getColumn(0).setMinWidth(90);
-            JtbTabela.getColumnModel().getColumn(0).setPreferredWidth(90);
-            JtbTabela.getColumnModel().getColumn(0).setMaxWidth(90);
-            JtbTabela.getColumnModel().getColumn(1).setMinWidth(230);
-            JtbTabela.getColumnModel().getColumn(1).setPreferredWidth(230);
-            JtbTabela.getColumnModel().getColumn(1).setMaxWidth(230);
+        jScrollPane1.setViewportView(jtVisitante);
+        if (jtVisitante.getColumnModel().getColumnCount() > 0) {
+            jtVisitante.getColumnModel().getColumn(0).setMinWidth(90);
+            jtVisitante.getColumnModel().getColumn(0).setPreferredWidth(90);
+            jtVisitante.getColumnModel().getColumn(0).setMaxWidth(90);
+            jtVisitante.getColumnModel().getColumn(1).setMinWidth(230);
+            jtVisitante.getColumnModel().getColumn(1).setPreferredWidth(230);
+            jtVisitante.getColumnModel().getColumn(1).setMaxWidth(230);
         }
 
         jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNovoActionPerformed(evt);
+            }
+        });
 
         jbAlterar.setText("Alterar");
+        jbAlterar.setFocusable(false);
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
 
         jbCancelar.setText("Cancelar");
 
         jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
 
         jbExcluir.setText("Excluir");
 
         jLabel7.setText("Placa Veiculo");
 
+        jtfPlacaVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfPlacaVeiculoActionPerformed(evt);
+            }
+        });
+
         jLabel8.setText("Descrição do Veiculos:");
+
+        jtfDescVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfDescVeiculoActionPerformed(evt);
+            }
+        });
 
         jcbTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "RG", "CPF", "CNH" }));
 
@@ -135,9 +194,7 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
                                     .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel3)
                                     .addComponent(jtfNome)))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
@@ -168,8 +225,7 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jtfDescVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel8)))))
-                        .addGap(15, 15, 15)))
-                .addGap(28, 28, 28))
+                        .addGap(15, 15, 15))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +267,34 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
+        uJPanelImagem2.setImagem(new java.io.File("E:\\Projeto Marinho\\CondominioSeguro\\src\\imagens\\imagem painel visitante.jpg"));
+
+        javax.swing.GroupLayout uJPanelImagem2Layout = new javax.swing.GroupLayout(uJPanelImagem2);
+        uJPanelImagem2.setLayout(uJPanelImagem2Layout);
+        uJPanelImagem2Layout.setHorizontalGroup(
+            uJPanelImagem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        uJPanelImagem2Layout.setVerticalGroup(
+            uJPanelImagem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 143, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(uJPanelImagem2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(uJPanelImagem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\Romario\\Documents\\NetBeansProjects\\CondominioSeguro\\src\\imagens\\imagem paienl.jpg"));
 
         javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
@@ -221,40 +305,102 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
         );
         uJPanelImagem1Layout.setVerticalGroup(
             uJPanelImagem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(uJPanelImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(uJPanelImagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 97, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(uJPanelImagem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(uJPanelImagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtfCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfCodigoActionPerformed
+
+    private void jtfNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNomeActionPerformed
+
+    private void jtfTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfTelefoneActionPerformed
+
+    private void jtfPlacaVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfPlacaVeiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfPlacaVeiculoActionPerformed
+
+    private void jtfDescVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDescVeiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfDescVeiculoActionPerformed
+
+    private void jtfDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDocumentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfDocumentoActionPerformed
+    
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
+        // TODO add your handling code here:
+        this.desabilitaHabilitaCampos(true);
+        this.limparCampos();
+        salvarAlterar = "salvar";
+    }//GEN-LAST:event_jbNovoActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        int linha = jtVisitante.getSelectedRow();
+        int codigoVisitante = (int) jtVisitante.getValueAt(linha, 0);
+        salvarAlterar = "alterar";
+
+        //falta ....listar as linhas da tabela
+        this.desabilitaHabilitaCampos(true);
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:                                         
+            if(salvarAlterar.equals("salvar")){                     
+             //   this.salvarCadastro(); ver erro
+            }else if (salvarAlterar.equals("alterar")){                   
+             //   this.alterarCadastro(); ver erro
+            }
+    
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
+        //limpar campos do formulario
+    private void limparCampos() {
+        jtfNome.setText("");
+        jtfPlacaVeiculo.setText("");
+        jtfDescVeiculo.setText("");
+        jtfTelefone.setText("");
+        jtfDescVeiculo.setText("");
+        jbSalvar.setText("");
+        
+    }
+    //habilita ou desabilita campos dos botoes
+    private void desabilitaHabilitaCampos(boolean condicao) {
+        jtfNome.setText("");
+        jtfPlacaVeiculo.setText("");
+        jtfDescVeiculo.setText("");
+        jtfTelefone.setText("");
+        jtfDescVeiculo.setText("");
+        jbSalvar.setText("");
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -298,7 +444,6 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable JtbTabela;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -316,6 +461,7 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
     private javax.swing.JButton jbNovo;
     private javax.swing.JButton jbSalvar;
     private componentes.UJComboBox jcbTipoDocumento;
+    private javax.swing.JTable jtVisitante;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfDescVeiculo;
     private javax.swing.JTextField jtfDocumento;
@@ -323,5 +469,6 @@ public class ViewCadastroVisitante extends javax.swing.JFrame {
     private javax.swing.JTextField jtfPlacaVeiculo;
     private javax.swing.JTextField jtfTelefone;
     private componentes.UJPanelImagem uJPanelImagem1;
+    private componentes.UJPanelImagem uJPanelImagem2;
     // End of variables declaration//GEN-END:variables
 }

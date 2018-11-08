@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 
 /**
@@ -14,10 +10,11 @@ public class ViewCadastroMorador extends javax.swing.JFrame {
     String salvarAlterar;
 
     /**
-     * Creates new form ViewCadastroMorador
+     * Create  ViewCadastroMorador
      */
     public ViewCadastroMorador() {
         initComponents();
+        setLocationRelativeTo(null);
         
     }
 
@@ -75,6 +72,11 @@ public class ViewCadastroMorador extends javax.swing.JFrame {
         });
 
         jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNovoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Telefone:");
 
@@ -156,19 +158,19 @@ public class ViewCadastroMorador extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel4)))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCancelar)
                     .addComponent(jbAlterar)
                     .addComponent(jbExcluir)
-                    .addComponent(jbSalvar)
-                    .addComponent(jbNovo))
-                .addGap(23, 23, 23))
+                    .addComponent(jbNovo)
+                    .addComponent(jbSalvar))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\Romario\\Documents\\NetBeansProjects\\CondominioSeguro\\src\\imagens\\imagem paienl.jpg"));
+        uJPanelImagem1.setImagem(new java.io.File("E:\\Projeto Marinho\\CondominioSeguro\\src\\imagens\\imagem painel visitante.jpg"));
 
         javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
         uJPanelImagem1.setLayout(uJPanelImagem1Layout);
@@ -193,7 +195,8 @@ public class ViewCadastroMorador extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(uJPanelImagem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -209,6 +212,10 @@ public class ViewCadastroMorador extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbNovoActionPerformed
 
     /**
      * @param args the command line arguments

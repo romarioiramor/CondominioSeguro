@@ -81,7 +81,7 @@ public class ViewLogin extends javax.swing.JFrame {
             }
         });
 
-        uJPanelImagem1.setImagem(new java.io.File("C:\\Users\\Romario\\Documents\\NetBeansProjects\\CondominioSeguro\\src\\imagens\\imagem painel visitante.jpg"));
+        uJPanelImagem1.setImagem(new java.io.File("E:\\Projeto Marinho\\CondominioSeguro\\src\\imagens\\imagem paienl.jpg"));
 
         javax.swing.GroupLayout uJPanelImagem1Layout = new javax.swing.GroupLayout(uJPanelImagem1);
         uJPanelImagem1.setLayout(uJPanelImagem1Layout);
